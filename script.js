@@ -435,47 +435,51 @@ document.addEventListener('DOMContentLoaded', () => {
   const toastNotification = document.getElementById('toast-notification');
   const toastMessage = document.getElementById('toast-message');
 
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-    // Fetch fields
-    const name = document.getElementById('form-name').value.trim();
-    const email = document.getElementById('form-email').value.trim();
-    const subject = document.getElementById('form-subject').value.trim();
-    const message = document.getElementById('form-message').value.trim();
+      // Fetch fields
+      const name = document.getElementById('form-name').value.trim();
+      const email = document.getElementById('form-email').value.trim();
+      const subject = document.getElementById('form-subject').value.trim();
+      const message = document.getElementById('form-message').value.trim();
 
-    // Basic Validation Check
-    if (!name || !email || !subject || !message) {
-      showToast('Please fill in all details before submitting.', 'error');
-      return;
-    }
+      // Basic Validation Check
+      if (!name || !email || !subject || !message) {
+        showToast('Please fill in all details before submitting.', 'error');
+        return;
+      }
 
-    // Submit button state animation
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalBtnHTML = submitBtn.innerHTML;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending message...';
+      // Submit button state animation
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending message...';
 
-    // Simulate sending message (2s delay)
-    setTimeout(() => {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalBtnHTML;
-      
-      // Clear form
-      contactForm.reset();
+      // Simulate sending message (2s delay)
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+        
+        // Clear form
+        contactForm.reset();
 
-      // Trigger success notification
-      showToast('Thank you! Your message has been sent successfully.', 'success');
-    }, 2000);
-  });
+        // Trigger success notification
+        showToast('Thank you! Your message has been sent successfully.', 'success');
+      }, 2000);
+    });
+  }
 
   function showToast(message, type) {
-    toastMessage.textContent = message;
-    toastNotification.className = `toast-notification active ${type}`;
-    
-    // Auto remove toast
-    setTimeout(() => {
-      toastNotification.classList.remove('active');
-    }, 4500);
+    if (toastNotification) {
+      toastMessage.textContent = message;
+      toastNotification.className = `toast-notification active ${type}`;
+      
+      // Auto remove toast
+      setTimeout(() => {
+        toastNotification.classList.remove('active');
+      }, 4500);
+    }
   }
 });

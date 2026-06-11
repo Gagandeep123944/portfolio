@@ -49,6 +49,7 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -1580,9 +1581,9 @@ section {
    ========================================== */
 .contact-grid {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 50px;
-  align-items: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  align-items: stretch;
 }
 
 .contact-info-cards {
@@ -1627,6 +1628,7 @@ section {
   font-size: 1.1rem;
   color: var(--text-primary);
   font-weight: 600;
+  word-break: break-all;
 }
 
 .contact-social-card {
@@ -1976,6 +1978,12 @@ section {
     width: 280px;
     height: 330px;
   }
+
+  .profile-glow {
+    width: 280px;
+    height: 330px;
+    filter: blur(30px);
+  }
   
   .floating-experience-badge {
     bottom: 10px;
@@ -1996,8 +2004,21 @@ section {
     gap: 25px;
   }
 
-  .contact-form-card {
-    padding: 25px;
+  .contact-info-card {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 15px;
+    padding: 30px 20px;
+  }
+  
+  .contact-social-card {
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .social-links-row {
+    justify-content: center;
   }
 
   .footer-top {
